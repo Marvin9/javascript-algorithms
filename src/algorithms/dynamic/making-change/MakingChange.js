@@ -5,6 +5,9 @@
  */
 
 export default function MakingChange(coinsYouHave, changesWanted) {
+  coinsYouHave.sort();
+  // eslint-disable-next-line no-param-reassign
+  coinsYouHave = coinsYouHave.filter(coin => coin !== 0);
   const row = coinsYouHave.length;
   const column = changesWanted;
 
@@ -17,5 +20,5 @@ export default function MakingChange(coinsYouHave, changesWanted) {
       else table[i][j] = Math.min(table[i - 1][j], 1 + table[i][j - coinsYouHave[i]]);
     }
   }
-  return table;
+  return table.length ? table[row - 1][column] : 0;
 }
